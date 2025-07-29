@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GearShift - Your trusted car maintenance companion in Azerbaijan. Smart reminders, service tracking, and vehicle management all in one place." />
+    <meta name="keywords" content="car maintenance, Azerbaijan, Baku, vehicle care, service reminders, auto service" />
+    <meta name="author" content="GearShift" />
+    <title>GearShift - Smart Car Maintenance for Azerbaijan</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GearShift - Smart Car Maintenance" />
+    <meta property="og:description" content="Keep your car in perfect condition with Azerbaijan's smartest car maintenance platform." />
+    <meta property="og:url" content="https://carcare.az" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="GearShift - Smart Car Maintenance" />
+    <meta property="twitter:description" content="Keep your car in perfect condition with Azerbaijan's smartest car maintenance platform." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+      
+      /* Loading screen */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease-out;
+      }
+      
+      .loading-screen.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .loading-content {
+        text-align: center;
+        color: white;
+      }
+      
+      .loading-logo {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 24px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+      }
+      
+      .loading-text {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      
+      .loading-subtitle {
+        font-size: 16px;
+        opacity: 0.8;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      
+      /* Hide main content initially */
+      #root {
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+      }
+      
+      #root.loaded {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-content">
+        <div class="loading-logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M5 17H15V19H5V17ZM13 5.83L16.76 9.59C17.15 9.98 17.15 10.61 16.76 11L13.71 14.05C13.56 14.2 13.35 14.29 13.13 14.29S12.7 14.2 12.55 14.05L9.5 11C9.11 10.61 9.11 9.98 9.5 9.59L13.26 5.83C13.65 5.44 14.28 5.44 13.67 5.83V5.83ZM12 3C12.55 3 13 3.45 13 4C13 4.55 12.55 5 12 5S11 4.55 11 4C11 3.45 11.45 3 12 3ZM19 12C19.55 12 20 12.45 20 13C20 13.55 19.55 14 19 14S18 13.55 18 13C18 12.45 18.45 12 19 12ZM5 12C5.55 12 6 12.45 6 13C6 13.55 5.55 14 5 14S4 13.55 4 13C4 12.45 4.45 12 5 12Z"/>
+          </svg>
+        </div>
+        <div class="loading-text">GearShift</div>
+        <div class="loading-subtitle">Loading your car care platform...</div>
+      </div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      // Hide loading screen after page loads
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          const root = document.getElementById('root');
+          
+          if (loadingScreen && root) {
+            loadingScreen.classList.add('fade-out');
+            root.classList.add('loaded');
+            
+            setTimeout(() => {
+              loadingScreen.remove();
+            }, 300);
+          }
+        }, 1000); // Show loading for at least 1 second
+      });
+    </script>
+  </body>
+</html>
